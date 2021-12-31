@@ -1,0 +1,117 @@
+    {%load static%}
+    
+    <!-- ======= Header ======= -->
+    <header id="header" class="fixed-top d-flex align-items-center header-transparent">
+        <div class="container-fluid">
+    
+          <div class="row justify-content-center align-items-center">
+            <div class="col-xl-11 d-flex align-items-center justify-content-between">
+              <!--<h1 class="logo"><a href="index.html"><img src="assets/img/hero-carousel/ddddddddd.jpg"  style="height: 170px; width: 50px;">Worldspeedcargo</a></h1>-->
+              <img src="{%static 'assets/img/hero-carousel/ddddddddd2.jpg'%} "  style="height: 100px; width: 80px; padding-top: 20px;">
+              <!-- Uncomment below if you prefer to use an image logo -->
+              <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+    
+              <nav id="navbar" class="navbar">
+                <ul>
+                  <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
+                  <li><a class="nav-link scrollto" href="#about">About</a></li>
+                   <li><a class="nav-link scrollto" href="{% url 'track'%}">Track Shipment</a></li>
+                  <li class="dropdown"><a href="https://www.websupportmails.cc/tracking-page/"><span>Services</span> <i class="bi bi-chevron-down"></i></a>
+                    <ul>
+                      <li><a href="#">Road Freight</a></li>
+                     
+                      <li><a href="#">Air Freight</a></li>
+                      <li><a href="#">Sea Freight</a></li>
+                      <li><a href="#">Storage & Packaging</a></li>
+                    </ul>
+                  </li>
+                  <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+                </ul>
+                <i class="bi bi-list mobile-nav-toggle"></i>
+              </nav><!-- .navbar -->
+            </div>
+          </div>
+    
+        </div>
+      </header><!-- End Header -->
+    
+      <!-- ======= hero Section ======= -->
+      <section id="hero">
+        <div class="hero-container">
+          <div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
+    
+            <ol id="hero-carousel-indicators" class="carousel-indicators"></ol>
+    
+            <div class="carousel-inner" role="listbox">
+    
+              <div class="carousel-item active" style="background-image: url(assets/img/hero-carousel/carlone.jpg)">
+                <div class="carousel-container">
+                  <div class="container">
+                    <h2 class="animate__animated animate__fadeInDown">Premium Worldwide Logistics Network
+                    </h2>
+                    <p class="animate__animated animate__fadeInUp">
+    
+                     <b>Discover a better way of shipping</b></p>
+                    <a href="#" class="btn-get-started scrollto animate__animated animate__fadeInUp">Get Started</a>
+                  </div>
+                </div>
+              </div>
+    
+              <div class="carousel-item" style="background-image: url({%static 'assets/img/hero-carousel/aaaaaa.png' %})">
+                <div class="carousel-container">
+                  <div class="container">
+                    <h2 class="animate__animated animate__fadeInDown">Equipment You Can Count On. 
+    
+                    </h2>
+                    <p class="animate__animated animate__fadeInUp"><b>Worldspeedcargo welcomes you to the world of Courier Services.</b></p>
+                    <a href="#" class="btn-get-started scrollto animate__animated animate__fadeInUp">Get Started</a>
+                  </div>
+                </div>
+              </div>
+    
+              <div class="carousel-item" style="background-image: url({%static 'assets/img/hero-carousel/ddxddde.png' %})">
+                <div class="carousel-container">
+                  <div class="container">
+                    <h2 class="animate__animated animate__fadeInDown">Your Navigator In The Trade World</h2>
+                    <p class="animate__animated animate__fadeInUp">
+    
+    
+                      <b>Quality transport ready to go</b></p>
+                    <a href="#" class="btn-get-started scrollto animate__animated animate__fadeInUp">Get Started</a>
+                  </div>
+                </div>
+              </div>
+    
+              <div class="carousel-item" style="background-image: url({%static 'assets/img/hero-carousel/oceanfree.png' %})">
+                <div class="carousel-container">
+                  <div class="container">
+                    <h2 class="animate__animated animate__fadeInDown">What We Do</h2>
+                    <p class="animate__animated animate__fadeInUp"><b>One definition of business logistics is “having the right item in the right quantity at the right time at the right place”.</b></p>
+                    <a href="#featured-services" class="btn-get-started scrollto animate__animated animate__fadeInUp">Discover More</a>
+                  </div>
+                </div>
+              </div>
+    
+              <div class="carousel-item" style="background-image: url({%static 'assets/img/hero-carousel/airrrrrrrrrr.jpg' %})">
+                <div class="carousel-container">
+                  <div class="container">
+                    <h2 class="animate__animated animate__fadeInDown">Track Your Shipments</h2>
+                    <p class="animate__animated animate__fadeInUp"><b>Operators involved in transportation.</b></p>
+                    <a href="{%url 'track'%}" class="btn-get-started scrollto animate__animated animate__fadeInUp">Track Shipment</a>
+                  </div>
+                </div>
+              </div>
+    
+            </div>
+    
+            <a class="carousel-control-prev" href="#heroCarousel" role="button" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon bi bi-chevron-left" aria-hidden="true"></span>
+            </a>
+    
+            <a class="carousel-control-next" href="#heroCarousel" role="button" data-bs-slide="next">
+              <span class="carousel-control-next-icon bi bi-chevron-right" aria-hidden="true"></span>
+            </a>
+    
+          </div>
+        </div>
+      </section><!-- End Hero Section -->

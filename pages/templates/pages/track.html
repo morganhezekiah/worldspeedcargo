@@ -1,0 +1,52 @@
+{% extends 'pages/helpers/Base.html' %}
+
+{%block content%}
+<link rel="stylesheet" href="https://www.websupportmails.cc/wp-content/themes/newsup/css/jquery.smartmenus.bootstrap.css?ver=5.8.2" />
+<body>
+
+    {%include 'pages/helpers/header.html'%}
+  
+    <main id="content">
+          <div style="width:80%; margin:40px auto;padding:30px" class="card">
+            <div class="card-body">
+                <h5 class="card-title">Enter the Consignment No.</h5>
+            </div>
+            <form  method="POST" style="display:flex;">
+                {% csrf_token %}
+                <input type="text" name="trackingNumber" required style="flex:3" class="form-control" placeholder="Enter Tracking Number">
+                <input type="submit" value="TRACK RESULT" style="
+                flex:1;
+                font-weight: 500;
+                font-size: 16px;
+                letter-spacing: 1px;
+                display: inline-block;
+                padding: 8px 32px;
+                transition: 0.5s;
+                margin: 10px;
+                text-align:center;
+                color: #fff;
+                border:none;
+                background: #18d26e;" 
+                >
+            </form>
+            <div class="card-footer">
+                <h5 class="card-title" style="font-weight:bold" >Ex: 12345</h5>
+            </div>
+        </div>
+    </main>
+        <!-- ======= Footer ======= -->
+        {% include 'pages/helpers/Footer.html'%}
+        <!-- End Footer -->
+</body>
+{%endblock content%}
+
+
+{%block script%}
+<script type="text/javascript">
+    window.addEventListener("load", function(){
+        var hero = document.getElementById("hero");
+        hero.style.height ="60vh";
+
+    })
+</script>
+{%endblock script%}

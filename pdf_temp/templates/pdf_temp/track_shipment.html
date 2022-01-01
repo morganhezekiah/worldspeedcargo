@@ -5,73 +5,144 @@
     </head>
 <body>
         <img width="335px" height="224px" style="text-align:center" src="https://worldspeedcargo.s3.eu-west-3.amazonaws.com/static/assets/img/hero-carousel/ddddddddd2.jpg" />
-    <div >
-        <div class="users_info" style="display:flex;justify-content:space-around">
-            <div>
-                <h5>Shipment Information</h5>
-                <p>Melissa Brooks</p>
-                <p>Allep Silicon</p>
-                <p>+345 4545454</p>
-                <p>Mssshs@gmail.com</p>
-            </div>
-            <div>
-                <h5>Receiver Information</h5>
-                <p>Melissa Brooks</p>
-                <p>Allep Silicon</p>
-                <p>+345 4545454</p>
-                <p>Mssshs@gmail.com</p>
-            </div>
+        <div style="text-align:center"><img width="300px" height="200px" style="text-align:center" src="https://www.websupportmails.cc/wp-content/plugins/wpcargo/includes/barcode.php?orientation=horizontal&codetype=code128&size=60&text=FT13ODD" /></div>
+        <div style="text-align:center;font-size:17px;">{{ shipment.uuid }}</div>
+        <div>
+          <h5 style="color:#18d26e;text-align:center;margin-top:20px">Shipper Information</h5>
+          <table class="table" style="text-align:center;">
+            <tbody>
+              <tr>
+                <td>Name</td>
+                <td>{{ shipment.shipper_name }}</td>
+              </tr>
+              <tr>
+                <td>Phone Contact</td>
+                <td>{{ shipment.shipper_phone }}</td>
+              </tr>
+              <tr>
+                <td>Address</td>
+                <td>{{ shipment.shipper_address }}</td>
+              </tr>
+              <tr>
+                <td>Email</td>
+                <td>{{ shipment.shipper_email }}</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
 
 
-        <h5 style="text-align:center">Shipment Information</h5>
-            <div style="width:50%; margin-top:30px;margin-right:auto;margin-left:auto">
-                <table class="table">
-                    <tbody>
-                      <tr>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                      </tr>
-                      <tr>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                      </tr>
-                    </tbody>
-                  </table>
-               
-            </div>
 
+        <div>
+          <h5 style="color:#18d26e;text-align:center;margin-top:20px">Reciever Information</h5>
+          <table class="table" style="text-align:center;">
+            <tbody>
+              <tr>
+                <td>Name</td>
+                <td>{{ shipment.reciever_name }}</td>
+              </tr>
+              <tr>
+                <td>Phone Contact</td>
+                <td>{{ shipment.reciever_phone }}</td>
+              </tr>
+              <tr>
+                <td>Address</td>
+                <td>{{ shipment.reciever_address }}</td>
+              </tr>
+              <tr>
+                <td>Email</td>
+                <td>{{ shipment.reciever_email }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+       
+        <div>
+          <h5 style="color:#18d26e;text-align:center;margin-top:20px">Shipment Information</h5>
+          <table class="table" style="text-align:center;">
+            <tbody>
+              <tr>
+                <td>Type Of Shipment</td>
+                <td>{{ shipment.type_of_shipment }}</td>
+              </tr>
+              <tr>
+                <td>Weight</td>
+                <td>{{ shipment.weight }}</td>
+              </tr>
+              <tr>
+                <td>Courier</td>
+                <td>{{ shipment.courier }}</td>
+              </tr>
+              <tr>
+                <td>Package</td>
+                <td>{{ shipment.package }}</td>
+              </tr>
 
-
-            <div style="margin-top:70px">
-                <table class="table">
-                    <thead>
-                      <tr>
-                        <th scope="col">First</th>
-                        <th scope="col">Last</th>
-                        <th scope="col">Handle</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                      </tr>
-                      <tr>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                      </tr>
-                      <tr>
-                        <td>Larry</td>
-                        <td>the Bird</td>
-                        <td>@twitter</td>
-                      </tr>
-                    </tbody>
-                  </table>
-            </div>
-    </div>
+              <tr>
+                <td>Mode</td>
+                <td>{{ shipment.model }}</td>
+              </tr>
+              <tr>
+                <td>Quantity</td>
+                <td>{{ shipment.quantity }}</td>
+              </tr>
+              <tr>
+                <td>Payment Mode</td>
+                <td>{{ shipment.payment_mode }}</td>
+              </tr>
+              <tr>
+                <td>Total Freight</td>
+                <td>{{ shipment.total_freight }}</td>
+              </tr>
+              <tr>
+                <td>Carrier</td>
+                <td>{{ shipment.carrier }}</td>
+              </tr>
+              <tr>
+                <td>Carrier Reference no. </td>
+                <td>{{ shipment.carrier_reference_no }}</td>
+              </tr>
+              <tr>
+                <td>Departure Time</td>
+                <td>{{ shipment.depature_time }}</td>
+              </tr>
+              <tr>
+                <td>Current Location</td>
+                <td>{{ shipment.location }}</td>
+              </tr>
+              <tr>
+                <td>Origin</td>
+                <td>{{ shipment.origin }}</td>
+              </tr>
+              <tr>
+                <td>Destination</td>
+                <td>{{ shipment.destination }}</td>
+              </tr>
+              <tr>
+                <td>Pick Up Date</td>
+                <td>{{ shipment.pickup_date }}</td>
+              </tr>
+              <tr>
+                <td>Pick Up Time</td>
+                <td>{{ shipment.pickup_time }}</td>
+              </tr>
+              <tr>
+                <td>Expected Delivery Date</td>
+                <td>{{ shipment.exected_delivery_date }}</td>
+              </tr>
+              <tr>
+                <td>Comment</td>
+                <td>{{ shipment.comment }}</td>
+              </tr>
+              <tr>
+                <td>Created On</td>
+                <td>{{ shipment.create_on }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      
+        <div style="width:100%;color:white;padding-right:7px;padding-left:7px;padding-top:7px;padding-bottom:7px;background:#18d26e;text-align:center"><a href="http://www.worldspeedcargo.com/track" style="text-align:center;">Follow Up shipment</a></div>
 
 </body>
 

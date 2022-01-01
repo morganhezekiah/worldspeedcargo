@@ -4,6 +4,29 @@
 <link rel="stylesheet" href="https://www.websupportmails.cc/wp-content/themes/newsup/css/jquery.smartmenus.bootstrap.css?ver=5.8.2" />
 <body>
 
+    <style>
+        @media (max-width: 600px) {
+            body{ background-color:black;}
+            #trackingShipmentForm {
+                display:block !important;
+            }
+          } 
+          @keyframes scaler {
+              10%{
+                transform: scale(1.00);
+              }
+              50%{
+                transform: scale(1.01);
+              }
+              100%{
+                transform: scale(1.05);
+              }
+          }
+          #card-shipment-result:hover {
+            animation:scaler ease-in-out 0.6s;
+        }
+    </style>
+
     {%include 'pages/helpers/header.html'%}
   
     <main id="content">
@@ -11,9 +34,14 @@
             <div class="card-body">
                 <h5 class="card-title">Enter the Consignment No.</h5>
             </div>
-            <form  method="POST" style="display:flex;">
+            {%for message in messages %}
+                    {% if message.tags == "error" %}
+                        <p style="color:crimson;font-weight:bolder">{{ message }}</p>
+                    {% endif %}
+                {%endfor%}
+            <form  method="POST" style="display:flex;" id="trackingShipmentForm">
                 {% csrf_token %}
-                <input type="text" name="trackingNumber" required style="flex:3" class="form-control" placeholder="Enter Tracking Number">
+                <input type="text" name="trackingUUID" required style="flex:3" class="form-control" placeholder="Enter Tracking Number">
                 <input type="submit" value="TRACK RESULT" style="
                 flex:1;
                 font-weight: 500;
@@ -28,11 +56,162 @@
                 border:none;
                 background: #18d26e;" 
                 >
+                
             </form>
             <div class="card-footer">
                 <h5 class="card-title" style="font-weight:bold" >Ex: 12345</h5>
             </div>
         </div>
+
+        {%if shipment %}
+        <div style="width:80%; margin:0px auto;padding:0px"><a style="background: #6c757d;
+            color: white;
+            padding: 12px;
+            text-align: center;
+            cursor:pointer;" href="{% url 'download_shipment_invoice' %}">Download Invoice</a></div>
+        <div style="width:80%; margin:40px auto;padding:30px">
+            <div class="card" id="card-shipment-result" style="width:80%;margin: 0px auto;box-shadow: 0px -1px 3px 0px #817878;">
+                <div class="card-body">
+                    <div style="text-align:center"><img width="300px" height="200px" style="text-align:center" src="https://www.websupportmails.cc/wp-content/plugins/wpcargo/includes/barcode.php?orientation=horizontal&codetype=code128&size=60&text=FT13ODD" /></div>
+                    <div style="text-align:center;font-size:17px;"><b>{{ shipment.uuid }}</b></div>
+                    <div>
+                      <h5 style="color:#18d26e;text-align:center;margin-top:20px">Shipper Information</h5>
+                      <table class="table" style="text-align:center;">
+                        <tbody>
+                          <tr>
+                            <td>Name</td>
+                            <td>{{ shipment.shipper_name }}</td>
+                          </tr>
+                          <tr>
+                            <td>Phone Contact</td>
+                            <td>{{ shipment.shipper_phone }}</td>
+                          </tr>
+                          <tr>
+                            <td>Address</td>
+                            <td>{{ shipment.shipper_address }}</td>
+                          </tr>
+                          <tr>
+                            <td>Email</td>
+                            <td>{{ shipment.shipper_email }}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+            
+            
+            
+                    <div>
+                      <h5 style="color:#18d26e;text-align:center;margin-top:20px">Reciever Information</h5>
+                      <table class="table" style="text-align:center;">
+                        <tbody>
+                          <tr>
+                            <td>Name</td>
+                            <td>{{ shipment.reciever_name }}</td>
+                          </tr>
+                          <tr>
+                            <td>Phone Contact</td>
+                            <td>{{ shipment.reciever_phone }}</td>
+                          </tr>
+                          <tr>
+                            <td>Address</td>
+                            <td>{{ shipment.reciever_address }}</td>
+                          </tr>
+                          <tr>
+                            <td>Email</td>
+                            <td>{{ shipment.reciever_email }}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                   
+                    <div>
+                      <h5 style="color:#18d26e;text-align:center;margin-top:20px">Shipment Information</h5>
+                      <table class="table" style="text-align:center;">
+                        <tbody>
+                          <tr>
+                            <td>Type Of Shipment</td>
+                            <td>{{ shipment.type_of_shipment }}</td>
+                          </tr>
+                          <tr>
+                            <td>Weight</td>
+                            <td>{{ shipment.weight }}</td>
+                          </tr>
+                          <tr>
+                            <td>Courier</td>
+                            <td>{{ shipment.courier }}</td>
+                          </tr>
+                          <tr>
+                            <td>Package</td>
+                            <td>{{ shipment.package }}</td>
+                          </tr>
+            
+                          <tr>
+                            <td>Mode</td>
+                            <td>{{ shipment.model }}</td>
+                          </tr>
+                          <tr>
+                            <td>Quantity</td>
+                            <td>{{ shipment.quantity }}</td>
+                          </tr>
+                          <tr>
+                            <td>Payment Mode</td>
+                            <td>{{ shipment.payment_mode }}</td>
+                          </tr>
+                          <tr>
+                            <td>Total Freight</td>
+                            <td>{{ shipment.total_freight }}</td>
+                          </tr>
+                          <tr>
+                            <td>Carrier</td>
+                            <td>{{ shipment.carrier }}</td>
+                          </tr>
+                          <tr>
+                            <td>Carrier Reference no. </td>
+                            <td>{{ shipment.carrier_reference_no }}</td>
+                          </tr>
+                          <tr>
+                            <td>Departure Time</td>
+                            <td>{{ shipment.depature_time }}</td>
+                          </tr>
+                          <tr>
+                        <tr>
+                            <td>Current Location</td>
+                            <td>{{ shipment.location }}</td>
+                            </tr>
+                            <td>Origin</td>
+                            <td>{{ shipment.origin }}</td>
+                          </tr>
+                          <tr>
+                            <td>Destination</td>
+                            <td>{{ shipment.destination }}</td>
+                          </tr>
+                          <tr>
+                            <td>Pick Up Date</td>
+                            <td>{{ shipment.pickup_date }}</td>
+                          </tr>
+                          <tr>
+                            <td>Pick Up Time</td>
+                            <td>{{ shipment.pickup_time }}</td>
+                          </tr>
+                          <tr>
+                            <td>Expected Delivery Date</td>
+                            <td>{{ shipment.exected_delivery_date }}</td>
+                          </tr>
+                          <tr>
+                            <td>Comment</td>
+                            <td>{{ shipment.comment }}</td>
+                          </tr>
+                          <tr>
+                            <td>Created On</td>
+                            <td>{{ shipment.create_on }}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                </div>
+              </div>
+        </div>
+        {%endif%}
     </main>
         <!-- ======= Footer ======= -->
         {% include 'pages/helpers/Footer.html'%}

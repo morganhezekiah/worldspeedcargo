@@ -1,0 +1,47 @@
+{% extends 'pages/helpers/Base.html' %}
+
+
+{%block content%}
+<style type="text/css">
+    input { 
+        padding: 15px;
+        margin-top: 30px;
+    }
+</style>
+<main class="" style="width:100%;display:flex;justify-content:center;margin-top:20vh;">
+    <form method="POST" class="card" style="padding:5vh">
+        {% if messages %}
+             {% for message in messages %}
+                <p style="color:crimson;text-align:center">{{ message }}</p>
+             {% endfor %}
+        {%endif%}
+    <p style="color:crimson;text-align:center">Please enter your email</p>
+        {% csrf_token %}
+        <div class="input-wrapper">
+            <input type="email" style="margin:0px" placeholder="Email" name="email" />
+        </div>
+
+        <div class="input-wrapper">
+            <input type="password"  placeholder="Password" name="password" />
+        </div>
+        <div class="input-wrapper" style="">
+            <input type="submit" style="flex:1;
+            font-weight: 500;
+            font-size: 16px;
+            letter-spacing: 1px;
+            display: inline-block;
+            padding: 8px 32px;
+            transition: 0.5s;
+            margin: 10px;
+            text-align:center;
+            width:100%;
+            margin:0px;
+            margin-top:30px;
+            color: #fff;
+            border:none;
+            background: #18d26e;"  value="LOGIN" />
+        </div>
+    </form>
+</main>
+
+{%endblock content%}

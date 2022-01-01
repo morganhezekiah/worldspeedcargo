@@ -1,0 +1,54 @@
+{% extends 'pages/helpers/Base.html' %}
+
+
+{%block content%}
+<style type="text/css">
+    input { 
+        padding: 15px;
+        margin-top: 30px;
+    }
+    a:hover{
+        color:white;
+    }
+</style>
+{% include 'users/auth/helpers/nav.html' %}
+<main class="" style="width:60vw;margin:10px auto;">
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Shipper Name</th>
+            <th scope="col">Receiver Name</th>
+            <th scope="col">Created On</th>
+            <th scope="col">__</th>
+            <th scope="col">__</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for shipment in shipments %}
+          <tr>
+            <th scope="row">{{ shipment.uuid }}</th>
+            <td>{{ shipment.shipper_name }}</td>
+            <td>{{ shipment.reciever_name }}</td>
+            <td>{{ shipment.created_on }}</td>
+            <td><a href="{% url 'shipment_detail' shipment.pk %}"  class="btn btn-outline-primary">EDIT</button></td>
+            <td><a href="{% url 'shipment_detail' shipment.pk %}"  class="btn btn-outline-danger">DELETE</button></td>
+          </tr>
+          {%endfor%}
+         
+        </tbody>
+      </table>
+    {% comment %} {% for shipment in shipments%}
+        <div class="card" style="padding:10px;">
+            <div class="card_header">
+                <a href ="{%url 'shipment_detail' shipment.pk %}"><div class="card_title">{{ shipment.uuid }} </div></a>
+
+                <div>
+
+                </div>
+            </div>
+        </div>
+    {%endfor%} {% endcomment %}
+</main>
+
+{%endblock content%}

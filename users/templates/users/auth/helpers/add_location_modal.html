@@ -1,0 +1,46 @@
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        {% comment %} location = models.TextField()
+    status = models.TextField()
+    updated_by = models.TextField()
+    remarks = models.TextField()
+    shipment = models.ForeignKey(Shipment, on_delete=models.CASCADE) {% endcomment %}
+        <div class="modal-body">
+            <form action="/users/create-shipment-location" method="POST">
+                {% csrf_token %}
+                <div class="mb-3">
+                  <label for="location" class="form-label">Location</label>
+                  <input type="email" required name="location" id="location" style="margin-top:0px" class="form-control"  aria-describedby="emailHelp">
+                </div>
+                <div class="mb-3">
+                  <label for="exampleInputPassword1" class="form-label">Status</label>
+                  <select  class="form-control" name="status">
+                      <option value="pending">Pending</option>
+                      <option value="Picked Up">Picked Up</option>
+                      <option value="Out Of Delivery">Out Of Delivery</option>
+                      <option value="In transist">In transist</option>
+                      <option value="Cancelled">Cancelled</option>
+                      <option value="Delivered">Delivered</option>
+                  </select>
+                </div>
+
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Remark</label>
+                    <textarea required class="form-control" name="remark"></textarea>
+                  </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>

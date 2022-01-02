@@ -16,7 +16,7 @@ SECRET_KEY = 'django-insecure-ix+xsg@8c%%xzo%ab@tf&&(!d0$hs*kslgprxgj@ug4*ygb+1%
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["worldspeedcargo.com","www.worldspeedcargo.com","www.worldspeedcargo.herokuapp.com","worldspeedcargo.herokuapp.com","127.0.0.1:8000"]
 
 
 # Application definition

@@ -15,6 +15,8 @@ from users.models import Shipment
 def index(request):
     return render(request, 'pages/index.html')
 
+def sitemap(request):
+    return render(request, "pages/sitemap.xml", content_type ="application/xhtml+xml")
 
 def track(request):
     if request.method == "GET":

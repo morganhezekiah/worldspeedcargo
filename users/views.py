@@ -1,5 +1,5 @@
 import re
-from django.http.response import HttpResponseRedirect
+from django.http.response import HttpResponseRedirect, JsonResponse
 from django.shortcuts import redirect, render
 from django.contrib.auth import login
 from django.contrib.auth.hashers import check_password
@@ -9,6 +9,8 @@ from django.contrib.auth.decorators import login_required
 from .shipmentSerializer import ShipmentSerializer
 from django.urls import reverse
 from utils.RandomString import GenerateRandomString
+from django.views import View
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 def loginUser(request):
@@ -78,11 +80,18 @@ def shipment_detail(request, pk):
 
 
 
-@login_required(login_url="/users/login")
-def shipment_list(request):
-    s = Shipment.objects.all().order_by("-id")
-    print(s)
-    return render(request,  "users/auth/list_shipment.html", {"shipments":s})
+class ShipmentListView(LoginRequiredMixin,View):
+    def get(self, request):
+        s = Shipment.objects.all().order_by("-id")
+        return render(request,  "users/auth/list_shipment.html", {"shipments":s,"count":len(s)})
+
+def deleteShipment(request, pk):
+    try:
+        s = Shipment.objects.get(id=pk)
+        s.delete()
+        return JsonResponse({"success":True}, status=200)
+    except Exception as e:
+        return JsonResponse({"message":"Shipment was not deleted"}, status=400)
 
 
 @login_required(login_url="/users/login")

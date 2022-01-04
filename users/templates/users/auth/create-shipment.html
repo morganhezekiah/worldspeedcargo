@@ -46,7 +46,7 @@
 
                      <div>
                         <div class="input-wrapper" style="display:flex;align-items:baseline">
-                            <label style="color:#18d26e;width:100%">Shipper Name</label>
+                            <label style="color:#18d26e;width:100%">Reciever Name</label>
                             <input type="text" required style="padding:0px;margin-left:10px;width:100%" name="reciever_name" />
                         </div>
 
@@ -145,19 +145,13 @@
                      <div>
                         <div class="input-wrapper" style="display:flex;align-items:baseline;margin-top:15px;">
                             <label style="color:#18d26e;width:100%">Origin</label>
-                            <select style="padding:0px;margin-left:10px;width:100%" required name="origin">
-                                <option>Bank Transfer</option>
-                                <option>Cash</option>
-                                <option>Cheque</option>
+                            <select style="padding:0px;margin-left:10px;width:100%" class="country_select_list" required name="origin">
                             </select>
                         </div>
 
                         <div class="input-wrapper" style="display:flex;align-items:baseline;margin-top:15px;">
                             <label style="color:#18d26e;width:100%">Destination</label>
-                            <select style="padding:0px;margin-left:10px;width:100%" required name="destination">
-                                <option>Bank Transfer</option>
-                                <option>Cash</option>
-                                <option>Cheque</option>
+                            <select class="country_select_list"  style="padding:0px;margin-left:10px;width:100%" required name="destination">
                             </select>
                         </div>
 

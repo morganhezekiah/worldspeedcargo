@@ -20,7 +20,8 @@ def sitemap(request):
 
 def track(request):
     if request.method == "GET":
-        return render(request, 'pages/track.html')
+        s = Shipment.objects.first()
+        return render(request, 'pages/track.html', {"shipment":s})
     else:
         trackingUUID = request.POST.get("trackingUUID")
         try:

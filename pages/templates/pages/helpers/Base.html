@@ -39,7 +39,11 @@
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
   <script src="https://kit.fontawesome.com/9649f5e4a5.js" crossorigin="anonymous"></script>
-
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+  <link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+/>
   <style type="text/css">
     .icon-bar {
       position: fixed;
@@ -86,6 +90,27 @@
         .h{
          display: none;
         }
+        .animated_location{
+          width:100%;
+          text-align:center;
+          font-weight:bolder;
+          font-size:1.5rem;
+          display:flex;
+          justify-content:center;
+        }
+        .animated_location p {
+          color: #13ad13;
+          margin-left:10px;
+          animation:bounce ease-in-out 2s infinite;
+        }
+        @keyframes bounce {
+          from{
+            transform:scale(1)
+          }
+          to{
+            transform:scale(1.6);
+          }
+        }
     </style>
 
 </head>
@@ -109,12 +134,13 @@
 <script src="{%static 'assets/js/index.js' %}"></script>
 
     <!--stickysocial-->
-      <div class="icon-bar">
+      {% comment %} <div class="icon-bar">
     <a href="https://wa.me/+17085840747 " ><img  src="https://worldspeedcargo.com//assets/img/whatsapp-icon-square.svg"></a> 
-  </div>
+  </div> {% endcomment %}
       <!--stickysocial-->
 
       <script src="//code.tidio.co/dckuxxotuyybtaa4lpwflunt2row3pyf.js" async></script>
-
+      <script src="https://apps.elfsight.com/p/platform.js" defer></script>
+      <div class="elfsight-app-2e98da9d-ebe9-4b85-9af3-8d95c943f0ac"></div>
 {%block script%}
 {%endblock script%}

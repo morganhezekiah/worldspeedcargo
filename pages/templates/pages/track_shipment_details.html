@@ -1,0 +1,776 @@
+{%load static %}
+
+<!DOCTYPE html>
+<!--
+This is a starter template page. Use this page to start your new project from
+scratch. This page gets rid of all links and provides the needed markup only.
+-->
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Shipment Details</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <style type="text/css">
+  input:required:invalid:focus, input:invalid:focus {
+    background-image: url('bad.png');
+    background-position: 99%;
+    background-repeat: no-repeat;
+	border: 1px solid #b79292 !important;
+    -moz-box-shadow: none;
+  }
+  input:required:valid {
+    background-image: url('good.png');
+    background-position: 99%;
+    background-repeat: no-repeat;
+	border: 1px solid #95b792 !important;
+  }
+  .ns-growl {
+	top: 50px !important;
+	left: 1000px;
+	max-width: 300px;
+	border-radius: 5px;
+  }
+  .ns-effect-genie {
+	top: 50px !important;
+	left: 1000px;
+	background: #3c3c3c;
+	opacity: 0.9;
+    filter: alpha(opacity=30);
+	box-shadow: 0 7px 6px rgba(0,0,0,0.1), 2px 4px 6px rgba(0,0,0,0.1);
+   }
+  .ns-effect-genie:hover {
+	top: 50px !important;
+	left: 1000px;
+	background: #363636;
+	opacity: 1;
+    filter: alpha(opacity=40);
+	box-shadow: 0 7px 6px rgba(0,0,0,0.1), 2px 4px 6px rgba(0,0,0,0.1);
+  }
+
+  body::-webkit-scrollbar {
+    width: 12px;               /* width of the entire scrollbar */
+  }
+  
+  body::-webkit-scrollbar-track {
+    background: #fff;        /* color of the tracking area */
+  }
+  
+  body::-webkit-scrollbar-thumb {
+    background-color: #ddd;;    /* color of the scroll thumb */
+    border-radius: 20px;       /* roundness of the scroll thumb */
+    border: 3px solid #fff;  /* creates padding around scroll thumb */
+  }
+  </style>
+  <link href="https://fonts.googleapis.com/css?family=Raleway:400,300,700" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" type="text/css" href="https://www.airstrologistics.com/server-side/css_pop/ns-default.css" />
+  <link rel="stylesheet" type="text/css" href="https://www.airstrologistics.com/server-side/css_pop/ns-style-growl.css" />
+  <script src="js_pop/modernizr.custom.js"></script>
+  <link rel="shortcut icon" href="{%static 'assets/img/hero-carousel/ddddddddd.jpg' %}">
+  <link href="https://www.airstrologistics.com/server-side/css/master.css" rel="stylesheet">
+  <!-- Bootstrap 3.3.7 -->
+  <link rel="stylesheet" href="https://www.airstrologistics.com/server-side/bootstrap/css/bootstrap.min.css">
+  <!-- Google Font -->
+  <link rel="stylesheet" href="https://www.airstrologistics.com/server-side/https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://www.airstrologistics.com/server-side/https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://www.airstrologistics.com/server-side/https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- daterange picker -->
+  <link rel="stylesheet" href="https://www.airstrologistics.com/server-side/plugins/daterangepicker/daterangepicker.css">
+  <!-- bootstrap datepicker -->
+  <link rel="stylesheet" href="https://www.airstrologistics.com/server-side/plugins/datepicker/datepicker3.css">
+  <!-- iCheck for checkboxes and radio inputs -->
+  <link rel="stylesheet" href="https://www.airstrologistics.com/server-side/plugins/iCheck/all.css">
+  <!-- Bootstrap Color Picker -->
+  <link rel="stylesheet" href="https://www.airstrologistics.com/server-side/plugins/colorpicker/bootstrap-colorpicker.min.css">
+  <!-- Bootstrap time Picker -->
+  <link rel="stylesheet" href="https://www.airstrologistics.com/server-side/plugins/timepicker/bootstrap-timepicker.min.css">
+  <!-- DataTables -->
+  <link rel="stylesheet" href="https://www.airstrologistics.com/server-side/plugins/datatables/dataTables.bootstrap.css">
+  <!-- Select2 -->
+  <link rel="stylesheet" href="https://www.airstrologistics.com/server-side/plugins/select2/select2.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="https://www.airstrologistics.com/server-side/dist/css/AdminLTE.min.css">
+  <!-- AdminLTE Skins. Choose a skin from the css/skins
+       folder instead of downloading all of them to reduce the load. -->
+  <link rel="stylesheet" href="https://www.airstrologistics.com/server-side/dist/css/skins/_all-mine.css">
+		<!-- Plugin Custom Stylesheet -->
+		<link rel="stylesheet" href="https://www.airstrologistics.com/server-side/form-wizard-green.css">
+
+
+  <!-- Google Font -->
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+
+
+
+  <link href="{%static 'assets/vendor/animate.css/animate.min.css' %}" rel="stylesheet">
+  <link href="{%static 'assets/vendor/aos/aos.css' %}" rel="stylesheet">
+  {% comment %} <link href="{%static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet"> {% endcomment %}
+  <link href="{%static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{%static 'assets/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+  <link href="{%static 'assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+  
+
+  <!-- Template Main CSS File -->
+  <link href="{%static 'assets/css/style.css' %}" rel="stylesheet">
+</head>
+
+
+
+<body class="hold-transition skin-yellow layout-top-nav">
+<!-- Loader Landing Page -->
+			{% comment %} <div id="ip-container" class="ip-container">
+				<div class="ip-header" >
+					<div class="ip-loader">
+						<svg class="ip-inner" width="60px" height="60px" viewBox="0 0 80 80">
+							<path class="ip-loader-circlebg" d="M40,10C57.351,10,71,23.649,71,40.5S57.351,71,40.5,71 S10,57.351,10,40.5S23.649,10,39.3,10z"/>
+							<path id="ip-loader-circle" class="ip-loader-circle" d="M40,10C57.351,10,71,23.649,71,40.5S57.351,71,40.5,71 S10,57.351,10,40.5S23.649,10,40.5,10z"/>
+						</svg> 
+					</div>
+				</div>
+			</div> {% endcomment %}
+			<!-- Loader end -->
+<div class="wrapper">
+
+  <!-- Main Header -->
+  {% comment %} <header class="main-header">
+    <nav class="navbar navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <!-- Logo -->
+    <a href="http://airstrologistics.com/server-side/logout_user" class="logo">
+      <!-- mini logo for sidebar mini 50x50 pixels -->
+      <span class="logo-mini"><b><img src="{%static 'assets/img/hero-carousel/ddddddddd2.jpg'%}" height="20px" width="100px" alt="Logo"></span>
+      <!-- logo for regular state and mobile devices -->
+      <span class="logo-lg"><img  class="img" src="{%static 'assets/img/hero-carousel/ddddddddd2.jpg'%}" width="161px" height="50px" alt="Logo"></span>
+    </a>
+        </div>
+        <!-- /.navbar-collapse -->
+        <!-- Navbar Right Menu -->
+        <div class="navbar-custom-menu">
+          <ul class="nav navbar-nav">
+            <li class="dropdown user user-menu">
+              <!-- Menu Toggle Button -->
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <!-- hidden-xs hides the username on small devices so only the image appears. -->
+                <span class="hidden-xs">{{ shipment.uuid }}</span>
+              </a>
+              <ul class="dropdown-menu">
+                <!-- Menu Footer-->
+                <li class="user-footer">
+                 <center> <div class="">
+                    <a href="http://airstrologistics.com/server-side/logout_user" class="btn btn-default btn-flat" style="border:0px">Log out</a>
+                  </div><center>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <!-- /.navbar-custom-menu -->
+      </div>
+      <!-- /.container-fluid -->
+    </nav>
+  </header> {% endcomment %}
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <center>
+        <h1>SHIPMENT DASHBOARD</h1>
+    </center>
+      <!--<ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
+        <li class="active">Here</li>
+      </ol> -->
+    </section>
+
+    <!-- Main content -->
+      <section class="content">
+
+      <div class="row">
+        <div class="col-md-3">
+
+          {% comment %} <div class="box box-primary">
+            <div class="box-body box-profile">
+              <img class='profile-user-img img-responsive img-circle' src="{%static 'assets/img/hero-carousel/ddddddddd2.jpg'%}" alt='contact personnel'>
+              <h3 class="profile-username text-center">WorldSpeedCargo</h3>
+
+              <p class="text-muted text-center"><font color="black"><strong>Contact Courier</strong></font></p>
+
+              <ul class="list-group list-group-unbordered">
+                <li class="list-group-item">
+                  <b><i class="fa fa-building-o margin-r-5"></i> Office/Branch:</b> <a class="pull-right">Dubai </a>
+                </li>
+                <li class="list-group-item">
+                  <b><i class="fa fa-phone margin-r-5"></i> Phone:</b> <a href="tel:+234 704 5934 358" class="pull-right">(401) 594-9837 </a>
+                </li>
+                <li class="list-group-item">
+                  <b><i class="fa fa-envelope margin-r-5"></i> Email:</b> <a href="mailto:username@mail.com" class="pull-right">support@worldspeedcargo.com</a>
+                </li>
+              </ul>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box --> {% endcomment %}
+
+          <!-- Sender Box -->
+          <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">Sender: {{ shipment.shipper_name }} </h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <strong><i class="fa fa-envelope margin-r-5"></i> Email</strong>
+
+              <p class="text-muted">
+                {{ shipment.shipper_email }}           
+              </p>
+
+              <hr>
+			  
+			  <strong><i class="fa fa-phone margin-r-5"></i> Phone</strong>
+
+              <p class="text-muted">
+                {{ shipment.shipper_phone }}            
+               </p>
+
+              <hr>
+
+              <strong><i class="fa fa-map-marker margin-r-5"></i> Location</strong>
+
+              <p class="text-muted">{{ shipment.location }} </p>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+		  
+		  <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">Receiver: {{ shipment.reciever_name }}</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <strong><i class="fa fa-envelope margin-r-5"></i> Email</strong>
+
+              <p class="text-muted">
+                {{ shipment.reciever_email  }}      
+               </p>
+
+              <hr>
+			  
+			  <strong><i class="fa fa-phone margin-r-5"></i> Phone</strong>
+
+              <p class="text-muted">
+                {{ shipment.reciever_phone }}          
+               </p>
+
+              <hr>
+
+              <strong><i class="fa fa-map-marker margin-r-5"></i> Location</strong>
+
+              <p class="text-muted">16415 Royal LN Houston,  Tx 77084</p>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+        <!-- /.col -->
+        <div class="col-md-9">
+          <div class="nav-tabs-custom">
+            <ul class="nav nav-tabs">
+              <li  class="active"><a href="#details" data-toggle="tab">Details</a></li>
+              <li><a href="#complains" data-toggle="tab">Enquiries / Complains    <font color="red"><strong>(Click Here)</strong></font></a></li>
+            </ul>
+            <div class="tab-content">
+              <!-- /.tab-pane -->
+              <div class="active tab-pane" id="details">
+                <!-- The timeline -->
+                <ul class="timeline timeline-inverse">
+                  <!-- timeline time label -->
+                  <li>
+                    <i class="fa fa-balance-scale bg-yellow"></i>
+
+                    <div class="timeline-item">
+
+                      <div class="timeline-header no-border"><a href="#">Weight:</a> &nbsp; <font color="black"><strong>{{ shipment.weight }} kg</strong></font>
+                      </h3>
+                    </div>
+                  </li>
+                  <!-- END timeline item -->
+                  <!-- timeline item -->
+                  <li>
+                    <i class="fa fa-slack bg-yellow"></i>
+
+                    <div class="timeline-item">
+
+                      <div class="timeline-header no-border"><a href="#">Quantity:</a> &nbsp; <font color="black"><strong>1</strong></font>
+                      </h3>
+                    </div>
+                  </li>
+                  <!-- END timeline item -->
+                  <!-- timeline item -->
+                  <li>
+                    <i class="fa fa-road bg-yellow"></i>
+
+                    <div class="timeline-item">
+
+                      <div class="timeline-header no-border"><a href="#">Mode of Shipment:</a> &nbsp; <font color="black"><strong>{{ shipment.type_of_shipment }}</strong></font>
+                      </h3>
+                    </div>
+                  </li>
+                  <!-- END timeline item -->
+				  <!-- timeline item -->
+                  <li>
+                    <i class="fa fa-cube bg-yellow"></i>
+
+                    <div class="timeline-item">
+
+                      <div class="timeline-header no-border"><a href="#">Type of Shipment:</a> &nbsp; <font color="black"><strong>{{ shipment.type_of_shipment }}</strong></font>
+                      </h3>
+                    </div>
+                  </li>
+                  <!-- END timeline item -->
+				  <!-- timeline item -->
+                  <li>
+                    <i class="fa fa-file-text-o bg-yellow"></i>
+
+                    <div class="timeline-item">
+
+                      <div class="timeline-header no-border"><a href="#">Invoice Number:</a> &nbsp; <font color="black"><strong>{{ shipment.uuid }} /LRG </strong></font>
+                      </h3>
+                    </div>
+                  </li>
+                  <!-- END timeline item -->
+				  <!-- timeline item -->
+                  <li>
+                    <i class="fa fa-tag bg-yellow"></i>
+
+                    <div class="timeline-item">
+
+                      <div class="timeline-header no-border"><a href="#">Consignment Product:</a> &nbsp; <font color="black"><strong>{{ shipment.package }}</strong></font>
+                      </h3>
+                    </div>
+                  </li>
+                  <!-- END timeline item -->
+				  <!-- timeline item -->
+                  <li>
+                    <i class="fa fa-comments bg-yellow"></i>
+					<div class="timeline-item">
+
+                    <h3 class="timeline-header"><a href="#">Consignment PickUp Date:</a></h3>
+
+                    <div class="timeline-body">
+                    <font color="black"><strong>{{ shipment.pickup_date }}</strong></font>
+                    </div>
+                    </div>
+                  </li>
+                  <!-- END timeline item -->
+                  <!-- timeline time label -->
+                  <li class="time-label">
+                        <span id="output" class="bg-green">
+                         <script>var date = "07\/29\/2021 02:15 PM";
+
+var month = date.substring(0, 2),
+		day 	= date.substring(3, 5),
+    year  = date.substring(6, 11),
+    month_written = "";
+    
+switch(month){
+	case "01":
+  	month_written = "Jan";
+    break;
+  case "02":
+  	month_written = "Feb";
+    break;
+  case "03":
+  	month_written = "March";
+    break;
+  case "04":
+  	month_written = "Apr";
+    break;
+  case "05":
+  	month_written = "May";
+    break;
+  case "06":
+  	month_written = "Jun";
+    break;
+  case "07":
+  	month_written = "Jul";
+    break;
+  case "08":
+  	month_written = "Agu";
+    break;
+  case "09":
+  	month_written = "Sel";
+    break;
+  case "10":
+  	month_written = "Oct";
+    break;
+  case "11":
+  	month_written = "Nov";
+    break;
+  case "12":
+  	month_written = "Dec";
+    break;
+}
+
+var new_date ="Pickup: &nbsp;" + "{{ shipment.pickup_date }}" + ", " + "{{ shipment.pickup_time }}" + " " + date.substring(11, 20);
+
+document.getElementById("output").innerHTML = new_date;</script>
+                        </span>
+                  </li>
+                  <!-- /.timeline-label -->
+                  <!-- timeline item -->
+                  <li>
+                    <i class="fa  fa-info-circle bg-green"></i>
+
+                    <div class="timeline-item">
+					                      <span class="time"><i class="fa fa-clock-o"></i> Last Updated: &nbsp;6 months ago</span>
+
+                      <h3 class="timeline-header"><a href="#">Consignment Present Status</a></h3>
+
+                      <div class="timeline-body">
+					  <br>
+          <div class="box box-primary">
+            <!-- /.box-header -->
+            <div class="box-body table-responsive">
+              <table class="table table-striped table-bordered">
+                <tr>
+                  <th>Date</th>
+                  <th>Time</th>
+                  <th>Present Location</th>
+                  <th>Status</th>
+                </tr>
+				        {% for l in location %}
+
+                <tr>
+                  <td>{{ l.date }}</td>
+                  <td>{{ l.time }}</td>
+                  <td>{{ l.location }} </td>
+                  <td><span class="{{ l.returnStatusLabelType }}"><i class='fa fa-truck'></i> {{ l.status }}</span>
+                  </td>
+                </tr>
+
+                {%endfor%}
+              </table>
+            </div>
+
+            {% comment %} <tr><td>12/22/2020</td><td>04:00 PM</td><td>Dubai</td><td><div class='progress progress-xs progress-striped active'><div class='progress-bar progress-bar-danger' style='width:20%'></div></div></td><td><span class='label label-warning'><i class='fa fa-truck'></i> In Transit</span></td></tr><tr><td>12/22/2020</td><td>06:45 PM</td><td>Istanbul Turkey</td><td><div class='progress progress-xs progress-striped active'><div class='progress-bar progress-bar-danger' style='width:30%'></div></div></td><td><span class='label label-warning'><i class='fa fa-truck'></i> In Transit</span></td></tr><tr><td>12/23/2020</td><td>02:45 PM</td><td>Warwick RI, United States</td><td><div class='progress progress-xs progress-striped active'><div class='progress-bar progress-bar-yellow' style='width:50%'></div></div></td><td><span class='label label-warning'><i class='fa fa-truck'></i> In Transit</span></td></tr><tr><td>12/23/2020</td><td>03:45 PM</td><td>Warwick RI, United States </td><td><div class='progress progress-xs progress-striped active'><div class='progress-bar progress-bar-yellow' style='width:60%'></div></div></td><td><span class='label label-danger'><i class='fa fa-hand-stop-o'></i> On Hold</span></td></tr><tr><td>07/28/2021</td><td>02:45 AM</td><td>Baltimore MD, United States</td><td><div class='progress progress-xs progress-striped active'><div class='progress-bar progress-bar-primary' style='width:70%'></div></div></td><td><span class='label label-warning'><i class='fa fa-truck'></i> In Transit</span></td></tr><tr><td>07/28/2021</td><td>02:45 PM</td><td>Kentucky, USA</td><td><div class='progress progress-xs progress-striped active'><div class='progress-bar progress-bar-primary' style='width:80%'></div></div></td><td><span class='label label-warning'><i class='fa fa-truck'></i> In Transit</span></td></tr><tr><td>07/28/2021</td><td>02:45 PM</td><td>Kentucky, USA</td><td><div class='progress progress-xs progress-striped active'><div class='progress-bar progress-bar-primary' style='width:80%'></div></div></td><td><span class='label label-warning'><i class='fa fa-truck'></i> In Transit</span></td></tr><tr><td>07/28/2021</td><td>02:45 PM</td><td>Kentucky, USA</td><td><div class='progress progress-xs progress-striped active'><div class='progress-bar progress-bar-primary' style='width:80%'></div></div></td><td><span class='label label-warning'><i class='fa fa-truck'></i> In Transit</span></td></tr><tr><td>07/30/2021</td><td>08:30 AM</td><td>Tennesse, USA</td><td><div class='progress progress-xs progress-striped active'><div class='progress-bar progress-bar-primary' style='width:80%'></div></div></td><td><span class='label label-danger'><i class='fa fa-hand-stop-o'></i> On Hold</span></td></tr>               {% endcomment %}
+			<div class="box-footer clearfix">
+              <ul class="pagination pagination-sm no-margin pull-right">
+                <li><a href="#">&laquo;</a></li>
+                <li><a href="#">1</a></li>
+                <li><a href="#">&raquo;</a></li>
+              </ul>
+            </div>
+			
+            
+          <!-- /.box -->
+            </div>
+                    </div>
+                  </li>
+                  <!-- END timeline item -->
+                  <li>
+                    <i class="fa fa-clock-o bg-gray"></i>
+                  </li>
+                </ul>
+              </div>
+              <!-- /.tab-pane -->
+
+              <div class="tab-pane" id="complains">
+                <form class="form-horizontal" id="sendShipmentComplaintForm" method="post">
+                  <div class="form-group">
+                    <label for="inputExperience" class="col-sm-2 control-label">Message</label>
+
+                    <div class="col-sm-10">
+                      <textarea class="form-control" name="message"  id="sendShipmentComplaintFormMessage" placeholder="" rows="10" cols="80" ></textarea>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                      <button type="submit" class="btn btn-success" name="submitBtn" style="border:0px"><li class="fa fa-send"></li> Send</button>
+                    </div>
+                  </div>
+                </form>
+
+                <script type="text/javascript">
+                  function getCookie(name) {
+                    let cookieValue = null;
+                    if (document.cookie && document.cookie !== '') {
+                        const cookies = document.cookie.split(';');
+                        for (let i = 0; i < cookies.length; i++) {
+                            const cookie = cookies[i].trim();
+                            // Does this cookie string begin with the name we want?
+                            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                                break;
+                            }
+                        }
+                    }
+                    return cookieValue;
+                }
+                    var sendShipmentComplaintForm = document.getElementById("sendShipmentComplaintForm");
+                    sendShipmentComplaintForm.addEventListener("submit", function(e){
+                      e.preventDefault();
+                      var sendShipmentComplaintFormMessage = document.getElementById("sendShipmentComplaintFormMessage");
+                      var value = sendShipmentComplaintFormMessage.value;
+                      if (value.length < 1){
+                        alert("Please enter your message ")
+                      }else {
+                        let link = "/sendShipmentComplaint";
+                        let error = false;
+                        fetch(link, {
+                          method:"POST",
+                          headers:{
+                            Accept:"application/json",
+                            'X-CSRFToken': getCookie('csrftoken');
+                          },
+                          body:JSON.stringify({message:value})
+                        })
+                        .then(res =>{
+                          if(res.status > 299){
+                            error=true;
+                          }
+                          return res.json();
+                        })
+                        .then(data =>{
+                          if(error){
+                            alert("There was an error sending your message")
+                          }else{
+                            alert("Message Sent successfully!!")
+                          }
+                        })
+                        .catch(err=>{
+                          alert("There was an error sending your message");
+                        })
+                      }
+                    });
+                </script>
+              </div>
+              <!-- /.tab-pane -->
+            </div>
+            <!-- /.tab-content -->
+          </div>
+          <!-- /.nav-tabs-custom -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+
+    </section>
+  </div>
+  <!-- /.content-wrapper -->
+
+  <!-- Main Footer -->
+  {% comment %} <footer class="main-footer">
+    <!-- To the right -->
+    <!-- Default to the left -->
+    <strong>&copy; <script type="text/javascript">
+  document.write(new Date().getFullYear());
+</script> 
+<a href="http://airstrologistics.com"><font color="#18d26e" >Airstro Logistics</font></a> </strong>- All rights reserved.
+  </footer> {% endcomment %}
+  {% include 'pages/helpers/Footer.html'%}
+
+  <div class="control-sidebar-bg"></div>
+</div>
+<!-- ./wrapper -->
+
+<!-- REQUIRED JS SCRIPTS -->
+<script src="js_pop/classie.js"></script>
+		<script src="js_pop/notificationFx.js"></script>
+		<script>// create the notification
+var notification = new NotificationFx({
+
+	// element to which the notification will be appended
+	// defaults to the document.body
+	wrapper : document.body,
+
+	// the message
+	message : ,
+
+	// layout type: growl|attached|bar|other
+	layout : 'growl',
+
+	// effects for the specified layout:
+	// for growl layout: scale|slide|genie|jelly
+	// for attached layout: flip|bouncyflip
+	// for other layout: boxspinner|cornerexpand|loadingcircle|thumbslider
+	// ...
+	effect : 'scale',
+
+	// notice, warning, error, success
+	// will add class ns-type-warning, ns-type-error or ns-type-success
+	type : 'error',
+
+	// if the user doesn´t close the notification then we remove it 
+	// after the following time
+	ttl : 6000,
+
+	// callbacks
+	onClose : function() { return false; },
+	onOpen : function() { return false; }
+
+});
+
+// show the notification
+notification.show();</script>
+
+<script>// create the notification
+var notification = new NotificationFx({
+
+	// element to which the notification will be appended
+	// defaults to the document.body
+
+	// the message
+	message : "<i class=\"fa fa-check\"><\/i> Welcome!",
+
+	// layout type: growl|attached|bar|other
+	layout : 'growl',
+							effect : 'genie',
+							type : 'notice',
+
+	// if the user doesn´t close the notification then we remove it 
+	// after the following time
+	ttl : 6000,
+
+	// callbacks
+	onClose : function() { return false; },
+	onOpen : function() { return false; }
+
+});
+
+// show the notification
+notification.show();</script>
+<!-- Loader -->
+<script src="https://www.airstrologistics.com/server-side/js/jquery-1.11.3.min.js"></script>
+<script src="https://www.airstrologistics.com/server-side/js/modernizr.custom.js"></script>
+<script src="https://www.airstrologistics.com/server-side/assets/loader/js/classie.js"></script>
+<script src="https://www.airstrologistics.com/server-side/assets/loader/js/pathLoader.js"></script>
+<script src="https://www.airstrologistics.com/server-side/assets/loader/js/main.js"></script>
+<script src="https://www.airstrologistics.com/server-side/js/classie.js"></script>
+<!-- jQuery 3.1.1 -->
+<script src="https://www.airstrologistics.com/server-side/plugins/jQuery/jquery-3.1.1.min.js"></script>
+<!-- Bootstrap 3.3.7 -->
+<script src="https://www.airstrologistics.com/server-side/bootstrap/js/bootstrap.min.js"></script>
+<!-- Select2 -->
+<script src="https://www.airstrologistics.com/server-side/plugins/select2/select2.full.min.js"></script>
+<!-- InputMask -->
+<script src="https://www.airstrologistics.com/server-side/plugins/input-mask/jquery.inputmask.js"></script>
+<script src="https://www.airstrologistics.com/server-side/plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
+<script src="https://www.airstrologistics.com/server-side/plugins/input-mask/jquery.inputmask.extensions.js"></script>
+<!-- DataTables -->
+<script src="https://www.airstrologistics.com/server-side/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="https://www.airstrologistics.com/server-side/plugins/datatables/dataTables.bootstrap.min.js"></script>
+<!-- date-range-picker -->
+<script src="https://www.airstrologistics.com/server-side/https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
+<script src="https://www.airstrologistics.com/server-side/plugins/daterangepicker/daterangepicker.js"></script>
+<!-- bootstrap datepicker -->
+<script src="https://www.airstrologistics.com/server-side/plugins/datepicker/bootstrap-datepicker.js"></script>
+<!-- bootstrap color picker -->
+<script src="https://www.airstrologistics.com/server-side/plugins/colorpicker/bootstrap-colorpicker.min.js"></script>
+<!-- bootstrap time picker -->
+<script src="https://www.airstrologistics.com/server-side/plugins/timepicker/bootstrap-timepicker.min.js"></script>
+<!-- SlimScroll 1.3.0 -->
+<script src="https://www.airstrologistics.com/server-side/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+<!-- iCheck 1.0.1 -->
+<script src="https://www.airstrologistics.com/server-side/plugins/iCheck/icheck.min.js"></script>
+<!-- FastClick -->
+<script src="https://www.airstrologistics.com/server-side/plugins/fastclick/fastclick.js"></script>
+<!-- AdminLTE App -->
+<script src="https://www.airstrologistics.com/server-side/dist/js/adminlte.min.js"></script>
+<!-- Page script -->
+<script>
+  $(function () {
+    //Initialize Select2 Elements
+    $(".select2").select2();
+
+    //Datemask dd/mm/yyyy
+    $("#datemask").inputmask("dd/mm/yyyy", {"placeholder": "dd/mm/yyyy"});
+    //Datemask2 mm/dd/yyyy
+    $("#datemask2").inputmask("mm/dd/yyyy", {"placeholder": "mm/dd/yyyy"});
+    //Money Euro
+    $("[data-mask]").inputmask();
+
+    //Date range picker
+    $('#reservation').daterangepicker();
+    //Date range picker with time picker
+    $('#reservationtime').daterangepicker({timePicker: true, timePickerIncrement: 30, format: 'MM/DD/YYYY h:mm A'});
+    //Date range as a button
+    $('#daterange-btn').daterangepicker(
+        {
+          ranges: {
+            'Today': [moment(), moment()],
+            'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+            'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+            'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+            'This Month': [moment().startOf('month'), moment().endOf('month')],
+            'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+          },
+          startDate: moment().subtract(29, 'days'),
+          endDate: moment()
+        },
+        function (start, end) {
+          $('#daterange-btn span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+        }
+    );
+
+    //Date picker
+    $('#datepicker').datepicker({
+      autoclose: true
+    });
+
+    //iCheck for checkbox and radio inputs
+    $('input[type="radio"].minimal, input[type="radio"].minimal').iCheck({
+      checkboxClass: 'icheckbox_minimal-blue',
+      radioClass: 'iradio_minimal-blue'
+    });
+    //Red color scheme for iCheck
+    $('input[type="radio"].minimal-red, input[type="radio"].minimal-red').iCheck({
+      checkboxClass: 'icheckbox_minimal-red',
+      radioClass: 'iradio_minimal-red'
+    });
+    //Flat red color scheme for iCheck
+    $('input[type="radio"].flat-red, input[type="radio"].flat-red').iCheck({
+      checkboxClass: 'icheckbox_flat-green',
+      radioClass: 'iradio_flat-green'
+    });
+
+    //Colorpicker
+    $(".my-colorpicker1").colorpicker();
+    //color picker with addon
+    $(".my-colorpicker2").colorpicker();
+
+    //Timepicker
+    $(".timepicker").timepicker({
+      showInputs: false
+    });
+  });
+</script>
+
+<script>
+  $(function () {
+    $("#example1").DataTable();
+    $('#example2').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false
+    });
+  });
+</script>
+<!-- Plugin Custom JS -->
+<script src="form-wizard.js"></script>
+<!-- Plugin Custom JS -->
+</body>
+</html>
+
+
+
+

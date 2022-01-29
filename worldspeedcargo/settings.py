@@ -5,6 +5,9 @@ from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+import environ
+env = environ.Env()
+environ.Env.read_env()
 
 
 # Quick-start development settings - unsuitable for production
@@ -33,6 +36,7 @@ INSTALLED_APPS = [
     "users",
     "pdf_temp",
     'rest_framework',
+    "locations"
 ]
 
 MIDDLEWARE = [
@@ -139,3 +143,12 @@ STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
 STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 django_heroku.settings(locals(), staticfiles=False)
 
+
+
+EMAIL_USE_TLS = True
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_PASSWORD="wmiixksozsqletoc"
+EMAIL_HOST_USER="morganhezekiah11@gmail.com"
+EMAIL_PORT = 587
+DEFAULT_FROM_EMAIL = "support@worldspeedcargo.com"

@@ -1,17 +1,21 @@
+from email import message
 import re
 from django.http.response import HttpResponseRedirect, JsonResponse
 from django.shortcuts import redirect, render
 from django.contrib.auth import login
 from django.contrib.auth.hashers import check_password
+from locations.forms import AddLocationForm
+from locations.models import Location
 from users.models import Shipment, User
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .shipmentSerializer import ShipmentSerializer
 from django.urls import reverse
 from utils.RandomString import GenerateRandomString
+from utils.SendEmail import SendEmail
 from django.views import View
 from django.contrib.auth.mixins import LoginRequiredMixin
-
+from threading import Thread
 
 def loginUser(request):
     if request.method== "GET":
@@ -57,16 +61,26 @@ def create_shipment(request):
             return redirect(reverse("createShipment"))
 
 
-
+def sendShipmentComplaint(request):
+    if request.method == "POST":
+        message = request.POST.get("message")
+        s = SendEmail(message, "Complaint From Worldspeedcargo")
+        t = Thread(target = s.send)
+        t.start()
+        return JsonResponse({"message":"Message Sent "}, status=200)
 
 @login_required(login_url="/users/login")
 def shipment_detail(request, pk):
     if request.method == "GET":
         try:
             s= Shipment.objects.get(id=pk)
+            l = Location.objects.filter(shipment = s)
+            
         except Shipment.DoesNotExist as e:
             s = {}
-        return render(request, "users/auth/shipment-details.html", { "shipment": s})
+            l ={}
+        addLocationForm= AddLocationForm()
+        return render(request, "users/auth/shipment-details.html", { "shipment": s,"addLocationForm":addLocationForm, 'location':l})
     else:
         data = request.POST
         instance = Shipment.objects.get(id=pk)
@@ -94,6 +108,23 @@ def deleteShipment(request, pk):
         return JsonResponse({"message":"Shipment was not deleted"}, status=400)
 
 
+
+
+
 @login_required(login_url="/users/login")
 def create_shipment_location(request):
-    pass
+    if request.method == "POST":
+        form= AddLocationForm(request.POST)
+        if form.is_valid():
+            
+            status  = form.cleaned_data.get("status")
+            remark = form.cleaned_data.get("remark")
+            location = form.cleaned_data.get("location")
+            shipment_id = form.data.get("shipment_id")[0]
+
+            location = Location.objects.create(location=location, remark=remark,status=status, shipment = Shipment.objects.get(id=shipment_id))
+            messages.success(request, "Shipment Location Created Successfully")
+            return redirect(reverse("shipment_detail",kwargs={"pk":int(shipment_id)}))
+
+
+    return render(request, "users/auth/shipment-details.html", {"addLocationForm":form})

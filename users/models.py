@@ -97,14 +97,6 @@ class Shipment(models.Model):
 
 
 
-# class Location(models.Model):
-#     date = models.DateField(default=timezone.now)
-#     location = models.TextField()
-#     status = models.TextField()
-#     updated_by = models.TextField()
-#     remarks = models.TextField()
-#     shipment = models.ForeignKey(Shipment, on_delete=models.CASCADE)
 
 
-#     def __str__(self) -> str:
-#         return self.shipment
+

@@ -4,12 +4,13 @@ from django.http.response import HttpResponseRedirect
 from django.shortcuts import redirect, render
 from django.conf import settings
 from django.template.loader import get_template
+from django.urls import reverse
 from xhtml2pdf import pisa
 from django.http import HttpResponse
 import os
+from locations.models import Location
 
 from users.models import Shipment
-
 
 
 def index(request):
@@ -25,12 +26,21 @@ def track(request):
         trackingUUID = request.POST.get("trackingUUID")
         try:
             s = Shipment.objects.get(uuid=trackingUUID)
+            
         except:
             messages.error(request,"Result Not found")
             return redirect("/track")
         
         request.session['shipment_invoice_uuid']  = trackingUUID
-        return render(request, 'pages/track.html' , {"shipment":s})
+        return redirect(reverse("track_shipment_details", kwargs={"pk":s.pk}))
+        
+def track_shipment_details(request, pk):
+    try:
+        s = Shipment.objects.get(id=pk)
+    except Shipment.DoesNotExist as e:
+        return HttpResponse("Shipment with this ID does not exist")
+    l = Location.objects.filter(shipment=s).order_by("-id")
+    return render(request, 'pages/track_shipment_details.html' , {"shipment":s,"location":l})
 
         
 def download_shipment_invoice(request):

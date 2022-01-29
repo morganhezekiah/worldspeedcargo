@@ -16,7 +16,7 @@
 
   <!-- Favicons -->
   <link href="{%static 'assets/img/hero-carousel/ddddddddd.jpg' %}" style="height: 100px;" rel="icon">
-  <link href="assets/img/hero-carousel/ddddddddd.jpg" rel="apple-touch-icon">
+  <link href="{%static 'assets/img/hero-carousel/ddddddddd.jpg' %}" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
@@ -112,6 +112,20 @@
           to{
             transform:scale(1.6);
           }
+        }
+
+        body::-webkit-scrollbar {
+          width: 12px;               /* width of the entire scrollbar */
+        }
+        
+        body::-webkit-scrollbar-track {
+          background: #fff;        /* color of the tracking area */
+        }
+        
+        body::-webkit-scrollbar-thumb {
+          background-color: #ddd;;    /* color of the scroll thumb */
+          border-radius: 20px;       /* roundness of the scroll thumb */
+          border: 3px solid #fff;  /* creates padding around scroll thumb */
         }
     </style>
 

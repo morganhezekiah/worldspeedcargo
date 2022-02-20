@@ -52,12 +52,15 @@ def create_shipment(request):
         return render(request, "users/auth/create-shipment.html", {"uuid":uuid})
     else:
         data = request.POST
+        print(data)
         s = ShipmentSerializer(data=data)
         if s.is_valid():
+            print("saving")
             s.save()
             pk  =Shipment.objects.last().id
             return redirect(reverse("shipment_detail", kwargs= {"pk":pk}))
         else:
+            print(s.errors)
             return redirect(reverse("createShipment"))
 
 

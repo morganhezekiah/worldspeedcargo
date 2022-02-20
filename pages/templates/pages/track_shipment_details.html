@@ -340,7 +340,28 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                     <div class="timeline-item">
 
-                      <div class="timeline-header no-border"><a href="#">Invoice Number:</a> &nbsp; <font color="black"><strong>{{ shipment.uuid }} /LRG </strong></font>
+                      <div class="timeline-header no-border"><a href="#">Invoice Number:</a> &nbsp; <font color="black"><strong>{{ shipment.invoice }} </strong></font>
+                      </h3>
+                    </div>
+                  </li>
+
+
+                  <li>
+                    <i class="fa fa-file-text-o bg-yellow"></i>
+
+                    <div class="timeline-item">
+
+                      <div class="timeline-header no-border"><a href="#">Comment</a> &nbsp; <font color="black"><strong>{{ shipment.comment }} </strong></font>
+                      </h3>
+                    </div>
+                  </li>
+
+                  <li>
+                    <i class="fa fa-file-text-o bg-yellow"></i>
+
+                    <div class="timeline-item">
+
+                      <div class="timeline-header no-border"><a href="#">Consignment Details</a> &nbsp; <font color="black"><strong>{{ shipment.consignment_detail }} </strong></font>
                       </h3>
                     </div>
                   </li>

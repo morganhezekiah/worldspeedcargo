@@ -3,6 +3,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django.contrib.auth.hashers import make_password
 from django.utils import timezone
+from utils.RandomString import GenerateRandomString
 
 class UserManager(BaseUserManager):
     def create_user(self,email, password):
@@ -87,6 +88,8 @@ class Shipment(models.Model):
     comment = models.TextField()
     create_on = models.DateField(default=timezone.now)
     location = models.TextField(default="England")
+    invoice = models.TextField(default=GenerateRandomString.randomStringGenerator(10))
+    consignment_detail = models.TextField(default="Private Shipment")
 
     uuid = models.CharField(max_length=100, unique=True)
   

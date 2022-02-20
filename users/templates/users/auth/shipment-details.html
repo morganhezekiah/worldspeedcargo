@@ -75,10 +75,9 @@
                         <div class="input-wrapper" style="display:flex;align-items:baseline">
                             <label style="color:#18d26e;width:100%">Type Of Shipment</label>
                             <select style="padding:0px;margin-left:10px;width:100%" required name="type_of_shipment" value="truck_load">
-                                <option>Air Fleight</option>
-                                <option>International shipping</option>
-                                <option value = "truck_load">Truck Load</option>
-                                <option>Van Move</option>
+                                <option>Document</option>
+                                <option>Parcel</option>
+                                <option>Gift</option>
                             </select>
                         </div>
 
@@ -204,11 +203,30 @@
                     
                 </div>
 
+                <div style="width:100%; display:flex;justify-content: space-between;    align-items: baseline;">
+                    <div class="input-wrapper" style="display:flex;align-items:baseline;margin-top:15px;">
+                        <label style="color:#18d26e;">Invoice</label>
+                        <input type="text" value="{{ shipment.invoice }}" style="padding:0px;margin-left:10px;width:100%" name="invoice" />
+                    </div>
+    
+                    <div class="input-wrapper" style="display:flex;align-items:baseline;margin-top:15px;">
+                        <label style="color:#18d26e;">Consignment Details.</label>
+                        <select style="padding:0px;margin-left:10px;width:100%" required name="consignment_detail">
+                            <option>Private Shipment</option>
+                        </select>
+                    </div>
+
+                    
+                </div>
+
+
                 <div class="input-wrapper" style="width:100%;margin-top:30px">
                     <label style="color:#18d26e;">Comment</label>
                     <textarea name="comment" style="width:100%" placeholder="...."> {{ shipment.comment }}  </textarea>
                 </div>
 
+
+                
 
                 <div class="input-wrapper" style="width:100%;margin-top:10px">
                     <input type="submit" style="flex:1;

@@ -242,7 +242,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
               <strong><i class="fa fa-map-marker margin-r-5"></i> Location</strong>
 
-              <p class="text-muted">{{ shipment.location }} </p>
+              <p class="text-muted">{{ shipment.shipper_address }} </p>
             </div>
             <!-- /.box-body -->
           </div>
@@ -272,7 +272,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
               <strong><i class="fa fa-map-marker margin-r-5"></i> Location</strong>
 
-              <p class="text-muted">16415 Royal LN Houston,  Tx 77084</p>
+              <p class="text-muted">{{ shipment.shipper_address }}</p>
             </div>
             <!-- /.box-body -->
           </div>
@@ -346,15 +346,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   </li>
                   <!-- END timeline item -->
 				  <!-- timeline item -->
-                  <li>
-                    <i class="fa fa-tag bg-yellow"></i>
-
-                    <div class="timeline-item">
-
-                      <div class="timeline-header no-border"><a href="#">Consignment Product:</a> &nbsp; <font color="black"><strong>{{ shipment.package }}</strong></font>
-                      </h3>
-                    </div>
-                  </li>
+                  
                   <!-- END timeline item -->
 				  <!-- timeline item -->
                   <li>

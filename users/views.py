@@ -110,7 +110,12 @@ def deleteShipment(request, pk):
 
 
 
-
+def deleteLocation (request):
+    if request.method == "POST":
+        location_id = request.POST["location_id"]
+        shipment_id = request.POST["shipment_id"]
+        location = Location.objects.get(id=location_id).delete()
+        return redirect(reverse("shipment_detail",kwargs={"pk":int(shipment_id)}))
 
 @login_required(login_url="/users/login")
 def create_shipment_location(request):

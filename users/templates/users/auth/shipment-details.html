@@ -272,7 +272,14 @@
                 <td><span class="{{ l.returnStatusLabelType }}"><i class='fa fa-truck'></i> {{ l.status }}</span>
                 </td>
                 <td><button class="btn btn-sm btn-outline-primary">Edit</button></td>
-                <td><button class="btn btn-sm btn-outline-danger">Delete</button></td>
+                <td>
+                    <form action="{% url 'deleteShipmentLocation' %}" method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" value="{{ l.id }}" name="location_id" />
+                        <input type="hidden" value="{{ l.shipment.id }}" name="shipment_id" />
+                        <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
+                    </form>
+                </td>
               </tr>
     
               {%endfor%}
@@ -280,5 +287,6 @@
           </div>
     <div>
 </main>
+
 
 {%endblock content%}

@@ -121,9 +121,10 @@ def create_shipment_location(request):
             status  = form.cleaned_data.get("status")
             remark = form.cleaned_data.get("remark")
             location = form.cleaned_data.get("location")
-            shipment_id = form.data.get("shipment_id")[0]
+            shipment_id = form.data.get("shipment_id")
+            shipment = Shipment.objects.get(id=int(shipment_id))
 
-            location = Location.objects.create(location=location, remark=remark,status=status, shipment = Shipment.objects.get(id=shipment_id))
+            location = Location.objects.create(location=location, remark=remark,status=status, shipment = shipment)
             messages.success(request, "Shipment Location Created Successfully")
             return redirect(reverse("shipment_detail",kwargs={"pk":int(shipment_id)}))
 

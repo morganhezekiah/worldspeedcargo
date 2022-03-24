@@ -132,15 +132,15 @@ AUTH_USER_MODEL ="users.User"
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# STATICFILES_DIRS =[
-#     os.path.join(BASE_DIR, "static")
-# ]
-# STATIC_URL = '/static/'
+STATICFILES_DIRS =[
+    os.path.join(BASE_DIR, "static")
+]
+STATIC_URL = '/static/'
 
 
-STATICFILES_STORAGE = os.path.join(BASE_DIR, 'static')
-STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
-STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+# STATICFILES_STORAGE = os.path.join(BASE_DIR, 'static')
+# STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
+# STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 django_heroku.settings(locals(), staticfiles=False)
 
 

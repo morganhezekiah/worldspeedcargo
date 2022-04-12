@@ -117,65 +117,93 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
   <!-- Template Main CSS File -->
   <link href="{%static 'assets/css/style.css' %}" rel="stylesheet">
+  <style>
+    .stepper-wrapper {
+        margin-top: auto;
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 20px;
+      }
+      .stepper-item {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        flex: 1;
+      
+        @media (max-width: 768px) {
+          font-size: 12px;
+        }
+      }
+      
+      .stepper-item::before {
+        position: absolute;
+        content: "";
+        border-bottom: 2px solid #ccc;
+        width: 100%;
+        top: 20px;
+        left: -50%;
+        z-index: 2;
+      }
+      
+      .stepper-item::after {
+        position: absolute;
+        content: "";
+        border-bottom: 2px solid #ccc;
+        width: 100%;
+        top: 20px;
+        left: 50%;
+        z-index: 2;
+      }
+      
+      .stepper-item .step-counter {
+        position: relative;
+        z-index: 5;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: #ccc;
+        margin-bottom: 6px;
+      }
+      
+      .stepper-item.active {
+        font-weight: bold;
+      }
+      
+      .stepper-item.completed .step-counter {
+        background-color: #4bb543;
+      }
+      
+      .stepper-item.completed::after {
+        position: absolute;
+        content: "";
+        border-bottom: 2px solid #4bb543;
+        width: 100%;
+        top: 20px;
+        left: 50%;
+        z-index: 3;
+      }
+      
+      .stepper-item:first-child::before {
+        content: none;
+      }
+      .stepper-item:last-child::after {
+        content: none;
+      }
+
+</style>
 </head>
 
 
 
 <body class="hold-transition skin-yellow layout-top-nav">
-<!-- Loader Landing Page -->
-			{% comment %} <div id="ip-container" class="ip-container">
-				<div class="ip-header" >
-					<div class="ip-loader">
-						<svg class="ip-inner" width="60px" height="60px" viewBox="0 0 80 80">
-							<path class="ip-loader-circlebg" d="M40,10C57.351,10,71,23.649,71,40.5S57.351,71,40.5,71 S10,57.351,10,40.5S23.649,10,39.3,10z"/>
-							<path id="ip-loader-circle" class="ip-loader-circle" d="M40,10C57.351,10,71,23.649,71,40.5S57.351,71,40.5,71 S10,57.351,10,40.5S23.649,10,40.5,10z"/>
-						</svg> 
-					</div>
-				</div>
-			</div> {% endcomment %}
-			<!-- Loader end -->
+
 <div class="wrapper">
 
-  <!-- Main Header -->
-  {% comment %} <header class="main-header">
-    <nav class="navbar navbar-static-top">
-      <div class="container">
-        <div class="navbar-header">
-          <!-- Logo -->
-    <a href="http://airstrologistics.com/server-side/logout_user" class="logo">
-      <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b><img src="{%static 'assets/img/hero-carousel/ddddddddd2.jpg'%}" height="20px" width="100px" alt="Logo"></span>
-      <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><img  class="img" src="{%static 'assets/img/hero-carousel/ddddddddd2.jpg'%}" width="161px" height="50px" alt="Logo"></span>
-    </a>
-        </div>
-        <!-- /.navbar-collapse -->
-        <!-- Navbar Right Menu -->
-        <div class="navbar-custom-menu">
-          <ul class="nav navbar-nav">
-            <li class="dropdown user user-menu">
-              <!-- Menu Toggle Button -->
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                <span class="hidden-xs">{{ shipment.uuid }}</span>
-              </a>
-              <ul class="dropdown-menu">
-                <!-- Menu Footer-->
-                <li class="user-footer">
-                 <center> <div class="">
-                    <a href="http://airstrologistics.com/server-side/logout_user" class="btn btn-default btn-flat" style="border:0px">Log out</a>
-                  </div><center>
-                </li>
-              </ul>
-            </li>
-          </ul>
-        </div>
-        <!-- /.navbar-custom-menu -->
-      </div>
-      <!-- /.container-fluid -->
-    </nav>
-  </header> {% endcomment %}
-  <!-- Content Wrapper. Contains page content -->
+  
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -187,6 +215,21 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <li class="active">Here</li>
       </ol> -->
     </section>
+
+    {% comment %} SHIPMENT STEP FLASH {% endcomment %}
+    <div class="stepper-wrapper">
+
+    {% for l in locationForSplash %}
+      <div class="stepper-item completed">
+        <div class="step-counter" style="font-weight:bolder;color:white">{{ l }}</div>
+        <div class="step-name">{{ l.status }}</div>
+      </div>
+    {%endfor%}
+    </div>
+
+
+    
+    {% comment %} SHIPMENT STEP FLASH END {% endcomment %}
 
     <!-- Main content -->
       <section class="content">

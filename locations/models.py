@@ -16,7 +16,7 @@ class Location(models.Model):
 
 
     def __str__(self) -> str:
-        return self.shipment.uuid
+        return self.location[0].upper()
 
     def returnStatusLabelType(self):
         main ="label"
@@ -32,3 +32,7 @@ class Location(models.Model):
             main = f"{main} label-default"
 
         return main
+
+    @property
+    def lastLocationString(self):
+        return self.location[0]

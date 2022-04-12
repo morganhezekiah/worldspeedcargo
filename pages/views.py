@@ -40,7 +40,8 @@ def track_shipment_details(request, pk):
     except Shipment.DoesNotExist as e:
         return HttpResponse("Shipment with this ID does not exist")
     l = Location.objects.filter(shipment=s).order_by("-id")
-    return render(request, 'pages/track_shipment_details.html' , {"shipment":s,"location":l})
+    locationForSplash = l[0:4]
+    return render(request, 'pages/track_shipment_details.html' , {"shipment":s,"location":l,"locationForSplash":locationForSplash})
 
         
 def download_shipment_invoice(request):

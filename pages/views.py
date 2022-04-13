@@ -39,8 +39,18 @@ def track_shipment_details(request, pk):
         s = Shipment.objects.get(id=pk)
     except Shipment.DoesNotExist as e:
         return HttpResponse("Shipment with this ID does not exist")
-    l = Location.objects.filter(shipment=s).order_by("-id")
-    locationForSplash = l[0:4]
+    locations  = Location.objects.filter(shipment=s)
+    l = locations.order_by("-id")
+    counter = 0
+    splashArray =[]
+    while counter < 4:
+        try:
+            splashArray.append(locations[counter])
+        except Exception as e:
+            pass
+        counter+=1
+    
+    locationForSplash = splashArray
     return render(request, 'pages/track_shipment_details.html' , {"shipment":s,"location":l,"locationForSplash":locationForSplash})
 
         
